@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
+ from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
@@ -62,6 +62,7 @@ def ReadBDD():
 def ReadBDD2():
     conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
+    cursor.execute('SELECT * FROM livres;')
     data = cursor.fetchall()
     conn.close()
     return render_template('read_data.html', data=data)
