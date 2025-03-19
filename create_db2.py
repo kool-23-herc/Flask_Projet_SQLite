@@ -1,4 +1,4 @@
-CREATE DATABASE Bibliotheque;
+CREATE Bibliotheque;
 USE Bibliotheque;
 
 -- Table des utilisateurs
