@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS Bibliotheque;
+CREATE DATABASE Bibliotheque;
 USE Bibliotheque;
 
 -- Table des utilisateurs
