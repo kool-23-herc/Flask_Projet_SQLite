@@ -79,8 +79,8 @@ INSERT INTO Livres (titre, auteur, annee_publication, genre, quantite) VALUES
 ('Les Misérables', 'Victor Hugo', 1862, 'Roman', 5),
 ('1984', 'George Orwell', 1949, 'Science-fiction', 3),
 ('Le Petit Prince', 'Antoine de Saint-Exupéry', 1943, 'Conte', 7),
-('Harry Potter à l'école des sorciers', 'J.K. Rowling', 1997, 'Fantasy', 4),
-('L'Étranger', 'Albert Camus', 1942, 'Philosophie', 6);
+('Harry Potter à lécole des sorciers', 'J.K. Rowling', 1997, 'Fantasy', 4),
+('LÉtranger', 'Albert Camus', 1942, 'Philosophie', 6);
 
 -- Ajout de prêts
 INSERT INTO Prets (id_utilisateur, id_livre, date_emprunt, statut) VALUES
