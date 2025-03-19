@@ -99,16 +99,6 @@ def insert_data_example(connection):
     connection.commit()
     print("Données d'exemple insérées avec succès")
 
-if __name__ == "__main__":
-    conn = create_connection()
-    
-    # Créer les tables
-    create_tables(conn)
-    
-    # Insérer des données d'exemple
-    insert_data_example(conn)
-    
-    # Insérer des clients
-    insert_clients(conn)
+
 
     conn.close()
