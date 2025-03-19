@@ -66,9 +66,9 @@ BEGIN
 END;//
 DELIMITER ;
 
--- Insertion de données d'exemple
+-- Insertion de données exemple
 
--- Ajout d'utilisateurs
+-- Ajout utilisateurs
 INSERT INTO Utilisateurs (nom, email, mot_de_passe) VALUES
 ('Alice Dupont', 'alice.dupont@email.com', 'password123'),
 ('Bob Martin', 'bob.martin@email.com', 'securepass'),
