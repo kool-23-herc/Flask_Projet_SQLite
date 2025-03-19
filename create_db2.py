@@ -37,7 +37,7 @@ CREATE INDEX idx_titre ON Livres(titre);
 CREATE INDEX idx_auteur ON Livres(auteur);
 CREATE INDEX idx_email ON Utilisateurs(email);
 
--- Trigger pour gérer les stocks lors d'un emprunt
+-- Trigger pour gérer les stocks lors un emprunt
 DELIMITER //
 CREATE TRIGGER before_emprunt
 BEFORE INSERT ON Prets
