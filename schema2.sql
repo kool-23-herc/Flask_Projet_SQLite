@@ -1,26 +1,59 @@
+DROP TABLE IF EXISTS Users;
+CREATE TABLE Users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    statut TEXT CHECK( statut IN ('user','admin' )) NOT NULL DEFAULT 'user'
+);
+
+DROP TABLE IF EXISTS Livres;
 CREATE TABLE Livres (
-    ID_livre INT PRIMARY KEY,
-    Titre VARCHAR(255),
-    Auteur VARCHAR(255),
-    Annee_publication INT,
-    Quantite INT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    titre VARCHAR(255) NOT NULL,
+    auteur VARCHAR(255) NOT NULL,
+    annee_publication INT,
+    categorie VARCHAR(100),
+    stock INT NOT NULL DEFAULT 1
 );
 
-CREATE TABLE Utilisateurs (
-    ID_utilisateur INT PRIMARY KEY,
-    Nom VARCHAR(255),
-    Prenom VARCHAR(255),
-    Email VARCHAR(255),
-    Date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
+DROP TABLE IF EXISTS Emprunts;
 CREATE TABLE Emprunts (
-    ID_emprunt INT PRIMARY KEY,
-    ID_utilisateur INT,
-    ID_livre INT,
-    Date_emprunt DATE,
-    Date_retour_prevue DATE,
-    Date_retour_effective DATE,
-    FOREIGN KEY (ID_utilisateur) REFERENCES Utilisateurs(ID_utilisateur),
-    FOREIGN KEY (ID_livre) REFERENCES Livres(ID_livre)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INT,
+    livre_id INT,
+    date_emprunt DATE NOT NULL,
+    date_retour_prevue DATE NOT NULL,
+    date_retour_effective DATE,
+    statut TEXT CHECK( statut IN ('En emprunt', 'Retour', 'en retard')) NOT NULL DEFAULT 'En emprunt',
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (livre_id) REFERENCES Livres(id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS Notifications;
+CREATE TABLE Notifications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INT,
+    message TEXT NOT NULL,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS Recommandations;
+CREATE TABLE Recommandations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INT,
+    livre_id INT,
+    date_recommandation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (livre_id) REFERENCES Livres(id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS Statistiques;
+CREATE TABLE Statistiques (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    livre_id INT,
+    nombre_emprunts INT DEFAULT 0,
+    dernier_emprunt DATE,
+    FOREIGN KEY (livre_id) REFERENCES Livres(id) ON DELETE CASCADE
 );
