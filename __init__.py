@@ -1,4 +1,4 @@
- from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
+from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
@@ -58,15 +58,6 @@ def ReadBDD():
     conn.close()
     return render_template('read_data.html', data=data)
 
-@app.route('/consultation2/')
-def ReadBDD2():
-    conn = sqlite3.connect('bibliotheque.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM livres;')
-    data = cursor.fetchall()
-    conn.close()
-    return render_template('read_data.html', data=data)
-
 @app.route('/enregistrer_client', methods=['GET'])
 def formulaire_client():
     return render_template('formulaire.html')  # afficher le formulaire
@@ -85,6 +76,20 @@ def enregistrer_client():
     conn.commit()
     conn.close()
     return redirect('/consultation/')  # Rediriger vers la page d'accueil après l'enregistrement
-                                                                                                                                       
+
+
+@app.route('/infos_livres')
+def information_livres():
+    conn = sqlite3.connect('library.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Livres;')
+    data = cursor.fetchall()
+    conn.close()
+    return render_template('informations_livres.html', data=data) # afficher les infos du livres
+
+@app.route('bibliotheque')
+def accueil_bibliotheque():
+    return render_template('accueil_bibliotheque.html')
+
 if __name__ == "__main__":
   app.run(debug=True)
