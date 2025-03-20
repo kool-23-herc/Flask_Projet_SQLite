@@ -62,6 +62,7 @@ def ReadBDD():
 def GetData():
     conn = sqlite3.connect('library.db')
     cursor = conn.cursor()
+    data = cursor.fetchall()
     conn.close()
     return render_template('read_data.html', data=data)
 
