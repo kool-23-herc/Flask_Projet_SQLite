@@ -87,7 +87,7 @@ def information_livres():
     conn.close()
     return render_template('informations_livres.html', data=data) # afficher les infos du livres
 
-@app.route('bibliotheque')
+@app.route('/bibliotheque')
 def accueil_bibliotheque():
     return render_template('accueil_bibliotheque.html')
 
